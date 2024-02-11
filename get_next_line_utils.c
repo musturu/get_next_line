@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-char  *cat_n_rem(char *dst, char *src)
+char  *cat_n_rem(char *dst, char *src, int flag)
 {
 	int	i;
 	int	j;
@@ -14,11 +14,11 @@ char  *cat_n_rem(char *dst, char *src)
 		dst[i + j] = src[i];
 		src[i] = '\0';
     i++;
-		if (dst[i + j - 1] == '\n')
+		if (flag && dst[i + j - 1] == '\n')
 			break;
 	}
   if (src[i])
-    cat_n_rem(src, src + i);
+    cat_n_rem(src, src + i, 0);
 	/*j = 0;
 	
 	 while (i < BUFFER_SIZE)
@@ -38,13 +38,13 @@ char  *cat_n_rem(char *dst, char *src)
 void	*ft_strealloc(char *str, int cycle)
 {
 	char	*ret;
-	int	i;
 
-	i = 0;
-	ret = (char *)ft_calloc(sizeof(char), ((++cycle * BUFFER_SIZE) + 1));
+  if (cycle == 1)
+    return (str);
+  ret = (char *)ft_calloc(sizeof(char), ((cycle * BUFFER_SIZE) + 1));
   if (str && ret)
   {
-    cat_n_rem(ret, str);
+    cat_n_rem(ret, str, 0);
     free(str);
   }
 	return (ret);
@@ -66,7 +66,7 @@ char	*hasnl(char *str)
 
 void *ft_calloc(size_t num, size_t size)
 {
-  int i;
+  size_t i;
   void *ret;
 
   ret = malloc(num * size);

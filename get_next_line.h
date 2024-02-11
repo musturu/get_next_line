@@ -10,9 +10,10 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char  *cat_n_rem(char *dst, char *src);
+char  *cat_n_rem(char *dst, char *src, int flag);
 void	*ft_strealloc(char *str, int cycle);
 char	*hasnl(char *str);
 void *ft_calloc(size_t num, size_t size);
+char  *get_next_line(int fd);
 
 #endif
