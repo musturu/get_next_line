@@ -12,7 +12,7 @@
 
 char  *cat_n_rem(char *dst, char *src);
 void	*ft_strealloc(char *str, int cycle);
-int	hasnl(char *str);
+char	*hasnl(char *str);
 void *ft_calloc(size_t num, size_t size);
 
 #endif

@@ -4,7 +4,7 @@ char  *cat_n_rem(char *dst, char *src)
 {
 	int	i;
 	int	j;
-  //printf("dst:<%s> src:<%s>\n", dst, src);
+
 	i = 0;
 	j = 0;
 	while(dst[j])
@@ -13,18 +13,26 @@ char  *cat_n_rem(char *dst, char *src)
 	{
 		dst[i + j] = src[i];
 		src[i] = '\0';
-		if (dst[i + j] == '\n')
-			break;
     i++;
+		if (dst[i + j - 1] == '\n')
+			break;
 	}
-	j = 0;
- // printf("dst:<%s> src:<%s>\n", dst, src);
-	while (src[i])
+  if (src[i])
+    cat_n_rem(src, src + i);
+	/*j = 0;
+	
+	 while (i < BUFFER_SIZE)
 	{
-		src[j++] = src[i++];
-	}
-  //printf("dst:<%s> src:<%s>\n", dst, src);
-  return dst;
+    if (src[i] != '\n' && src[i] != '\0')
+    {
+      src[j] = src[i];
+      j++;
+    }
+    src[i] = 0;
+    i++;
+	}*/
+               //printf("dst:<%s> src:<%s>\n", dst, src);
+  return (dst);
 }
 
 void	*ft_strealloc(char *str, int cycle)
@@ -42,7 +50,7 @@ void	*ft_strealloc(char *str, int cycle)
 	return (ret);
 }
 
-int	hasnl(char *str)
+char	*hasnl(char *str)
 {
   int i;
 
@@ -50,7 +58,7 @@ int	hasnl(char *str)
 	while(str && str[i])
 	{
 		if (str[i] == '\n')
-			return (1);
+			return (str + i + 1);
 		i++;
 	}
 	return (0);
@@ -65,7 +73,7 @@ void *ft_calloc(size_t num, size_t size)
   if (ret == NULL)
     return (ret);
   i = 0;
-  while (i < num)
+  while (i < num * size)
   {
     ((unsigned char *)ret)[i] = '\0';
     i++;
