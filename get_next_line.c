@@ -15,11 +15,11 @@ char  *get_next_line(int fd)
 	{
 		if (!*buf)
 			readr = read(fd, buf, BUFFER_SIZE);
-    if (readr <= 0)
-      break;
+        if (readr <= 0)
+            break;
 		i++;
 		line = ft_strealloc(line, i);
-		line = cat_n_rem(line, buf, 1);
+		cat_n_rem(line, buf, 1);
 	}
   //if (hasnl(line))
     //*hasnl(line) = '\0';

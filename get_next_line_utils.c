@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-char  *cat_n_rem(char *dst, char *src, int flag)
+void cat_n_rem(char *dst, char *src, int flag)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,6 @@ char  *cat_n_rem(char *dst, char *src, int flag)
     i++;
 	}*/
                //printf("dst:<%s> src:<%s>\n", dst, src);
-  return (dst);
 }
 
 void	*ft_strealloc(char *str, int cycle)

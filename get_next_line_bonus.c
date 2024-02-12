@@ -1,5 +1,5 @@
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char  *get_next_line(int fd)
 {
@@ -8,6 +8,8 @@ char  *get_next_line(int fd)
 	int          readr;
 	int i;
 
+    if (fd < 0 || BUFFER_SIZE < 1)
+        return (0);
 	i = 0;
   readr = 1;
   line = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
@@ -21,24 +23,8 @@ char  *get_next_line(int fd)
 		line = ft_strealloc(line, i);
 		cat_n_rem(line, buf[fd], 1);
 	}
-  //if (hasnl(line))
-    //*hasnl(line) = '\0';
 	if (line && *line)
 		return (line);
 	free(line);
 	return (0);
 }
-
-/*
-#include <string.h>
-
-int	main()
-{
-	int fd = open("prova", O_RDONLY);
-
-	int i = 0;
-	while (i++ < 8)
-	{
-		printf("line%d:%s", i, get_next_line(fd));
-	}
-}*/

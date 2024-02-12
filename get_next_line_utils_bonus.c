@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void  cat_n_rem(char *dst, char *src, int flag)
 {
